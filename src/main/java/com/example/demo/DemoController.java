@@ -9,7 +9,7 @@ public class DemoController {
 
 	@GetMapping("/")
 	public String index() {
-		return "Index";
+		return "index";
 	}
 	
 	@GetMapping("/hello.html")
@@ -26,6 +26,11 @@ public class DemoController {
 		model.addAttribute("Signalstate", "신호 양호");
 		model.addAttribute("Status", "사용 가능");
 		return "hello2";
+	}
+	
+	@GetMapping("/about_detailed")
+	public String about() {
+		return "about_detailed";
 	}
 }
 
