@@ -19,5 +19,9 @@ public Article(String title, String content){
 this.title = title;
 this.content = content;
 }
+public void update(String title, String content) { // 현재 객체 상태 업데이트
+this.title = title;
+this.content = content;
+}
 }
 
