@@ -1,6 +1,6 @@
 (function ($) {
     "use strict";
-    
+
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -28,15 +28,15 @@
         if (this.hash !== "") {
             var target = $(this.hash);
             if (target.length > 0 && target.offset()) {
-                event.preventDefault();
-                
-                $('html, body').animate({
+            event.preventDefault();
+            
+            $('html, body').animate({
                     scrollTop: target.offset().top - 45
-                }, 1500, 'easeInOutExpo');
-                
-                if ($(this).parents('.navbar-nav').length) {
-                    $('.navbar-nav .active').removeClass('active');
-                    $(this).closest('a').addClass('active');
+            }, 1500, 'easeInOutExpo');
+            
+            if ($(this).parents('.navbar-nav').length) {
+                $('.navbar-nav .active').removeClass('active');
+                $(this).closest('a').addClass('active');
                 }
             }
         }
@@ -52,11 +52,11 @@
     });
     $('.back-to-top').click(function () {
         if ($('.back-to-top').length > 0) {
-            $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-            return false;
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        return false;
         }
     });
-    
+
     // Typed Initiate
     if ($('.typed-text-output').length == 1) {
         var typed_strings = $('.typed-text').text();

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Test 1</title>
+</head>
+<body>
+    <h1>Thymeleaf 문법 테스트</h1>
+    
+    <h2>1. 텍스트 출력</h2>
+    <span th:utext="${data1}">message</span>
+    
+    <h2>2. Input 태그의 값 지정</h2>
+    <input type="text" th:value="${data2}">
+    
+    <h2>3. Checkbox 태그의 값 지정</h2>
+    <input type="checkbox" th:field="*{data2}" th:value="true"> 동의합니다.
+    
+    <h2>4. 태그의 속성 값 여러 개 지정 (링크는 @)</h2>
+    <p><a th:href="@{/posts/(id=${link})}">글 상세보기</a></p>
+    
+    <h2>5. 추가 예제 - 이름 출력</h2>
+    <p>이름: <span th:text="${name}"></span></p>
+    
+    <h2>6. 추가 예제 - 파라미터 값들</h2>
+    <p>para1: <span th:text="${para1}"></span></p>
+    <p>para2: <span th:text="${para2}"></span></p>
+    <p>link: <span th:text="${link}"></span></p>
+    
+    <h2>7. 지역변수</h2>
+    <div th:with="first=${name}">
+        <p>리스트에서 처음 사람의 이름 = <span th:text="${first}"></span></p>
+    </div>
+    
+    <h2>8. 링크에 파라미터 추가하기</h2>
+    <a th:href="@{/products/detail/(productId=${para1}, productId=${para2})}">상품 상세보기</a>
+    
+    <h2>9. 테이블 반복문 (th:each) 및 숫자 포맷팅</h2>
+    <table border="1" style="border-collapse: collapse; width: 300px;">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prod: ${allProducts}">
+                <td th:text="${prod.name}">Oranges</td>
+                <td th:text="${#numbers.formatDecimal(prod.price, 1, 2)}">0.99</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+
