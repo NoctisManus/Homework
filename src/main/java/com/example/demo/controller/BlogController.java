@@ -60,7 +60,12 @@ model.addAttribute("totalPages", list.getTotalPages()); // 페이지 크기
 model.addAttribute("currentPage", page); // 페이지 번호
 model.addAttribute("keyword", keyword); // 키워드
 model.addAttribute("startNum", startNum); // 시작 게시글 번호
-model.addAttribute("member", session.getAttribute("member")); // 세션에서 회원 정보 가져오기
+	// 현재 로그인한 사용자의 세션 정보 가져오기
+	Long currentMemberId = (Long) session.getAttribute("currentMemberId");
+	if (currentMemberId != null) {
+		String sessionKey = "member_" + currentMemberId;
+		model.addAttribute("member", session.getAttribute(sessionKey)); // 현재 사용자의 세션 정보
+	}
 return "board_list"; // .HTML 연결
 }
 @GetMapping("/board_write") // 글쓰기 페이지 링크 지정

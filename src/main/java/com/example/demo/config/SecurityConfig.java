@@ -14,7 +14,7 @@ public class SecurityConfig { // 스프링에서 보안 관리 클래스
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 http
 .authorizeHttpRequests(auth -> auth
-.requestMatchers("/join_new", "/api/members", "/member_login", "/api/login_check", "/logout", "/", "/board_list", "/board_view/**", "/board_edit/**", "/board_write", "/api/boards", "/api/board_edit/**", "/api/board_delete/**", "/css/**", "/js/**", "/img/**", "/lib/**").permitAll() // 인증 없이 접근 가능
+.requestMatchers("/join_new", "/api/members", "/member_login", "/api/login_check", "/logout", "/", "/board_list", "/board_view/**", "/board_edit/**", "/board_write", "/api/boards", "/api/board_edit/**", "/api/board_delete/**", "/upload-email", "/error_page/**", "/css/**", "/js/**", "/img/**", "/lib/**").permitAll() // 인증 없이 접근 가능
 .anyRequest().authenticated() // 나머지는 인증 필요
 )
 .logout(logout -> logout.disable()) // Spring Security 기본 로그아웃 비활성화
