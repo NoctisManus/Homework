@@ -2,6 +2,8 @@ package com.example.demo.model.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.domain.Board;
@@ -58,6 +60,15 @@ boardRepository.save(board); // Board 객체에 저장 (기존 필드 값 유지
 }
 public void deleteBoard(Long id) {
 boardRepository.deleteById(id);
+}
+public Board saveBoard(AddArticleRequest request){
+return boardRepository.save(request.toBoardEntity());
+}
+public Page<Board> findAll(Pageable pageable) {
+return boardRepository.findAll(pageable);
+}
+public Page<Board> searchByKeyword(String keyword, Pageable pageable) {
+return boardRepository.findByTitleContainingIgnoreCase(keyword, pageable); // LIKE 검색 제공(대소문자 무시)
 }
 }
 
