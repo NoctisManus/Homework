@@ -40,7 +40,7 @@ return "article_list"; // .HTML 연결
 // return "board_list"; // .HTML 연결
 // }
 @GetMapping("/board_list") // 새로운 게시판 링크 지정
-public String board_list(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword) {
+public String board_list(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword, jakarta.servlet.http.HttpSession session) {
 int pageSize = 3; // 한 페이지의 게시글 수
 PageRequest pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id")); // 한 페이지의 게시글 수, ID 내림차순 정렬
 Page<Board> list; // Page를 반환
@@ -60,6 +60,7 @@ model.addAttribute("totalPages", list.getTotalPages()); // 페이지 크기
 model.addAttribute("currentPage", page); // 페이지 번호
 model.addAttribute("keyword", keyword); // 키워드
 model.addAttribute("startNum", startNum); // 시작 게시글 번호
+model.addAttribute("member", session.getAttribute("member")); // 세션에서 회원 정보 가져오기
 return "board_list"; // .HTML 연결
 }
 @GetMapping("/board_write") // 글쓰기 페이지 링크 지정
